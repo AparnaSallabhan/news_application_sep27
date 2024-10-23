@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:news_application_sep27/model/news_data_model.dart';
+import 'package:news_application_sep27/model/source_model.dart';
+import 'package:news_application_sep27/model/source_model.dart';
 
 class SearchScreenController with ChangeNotifier {
   NewsDataModel? newsDataModel;
@@ -18,6 +20,29 @@ class SearchScreenController with ChangeNotifier {
         if (newsDataModel != null) {
           newsArticles = newsDataModel!.articles ?? [];
           print(newsArticles);
+        }
+      }
+    } catch (e) {
+      print(e);
+    }
+    isLoading = false;
+    notifyListeners();
+  }
+
+  SourceModel? sourceModel;
+  List<NewsSource>? sourceList = [];
+  getSources() async {
+    isLoading = true;
+    notifyListeners();
+    try {
+      final sourceUrl = Uri.parse(
+          "https://newsapi.org/v2/top-headlines/sources?apiKey=00f0524e9a9640bbb254dfa7777b526");
+      var source = await http.get(sourceUrl);
+      if (source.statusCode == 200) {
+        sourceModel = sourceModelFromJson(source.body);
+        if (sourceModel != null) {
+          sourceList = sourceModel!.sources!.toList();
+          print(sourceList);
         }
       }
     } catch (e) {

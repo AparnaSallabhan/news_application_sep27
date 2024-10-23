@@ -15,6 +15,16 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   TextEditingController controller = TextEditingController();
   @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        context.read<SearchScreenController>().getSources();
+      },
+    );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final searchScreenProvider = context.watch<SearchScreenController>();
 
@@ -66,7 +76,8 @@ class _SearchScreenState extends State<SearchScreen> {
                     dividerColor: Colors.white,
                     tabs: [
                       Tab(
-                        text: "News",
+                        text: "Authors",
+                       
                       ),
                       Tab(
                         text: "Topics",

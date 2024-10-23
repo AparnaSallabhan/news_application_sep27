@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:news_application_sep27/controller/book_mark_screen_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +28,7 @@ class NewsCard extends StatelessWidget {
             imageUrl: image,
             placeholder: (context, url) =>
                 Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => Icon(Icons.error),
+            errorWidget: (context, url, error) => Center(child: Lottie.asset("lib/assets/lottie_files/animation.json",height: 80)),
             height: 100,
             width: 100,
             fit: BoxFit.cover,
@@ -63,10 +64,8 @@ class NewsCard extends StatelessWidget {
         ),
         IconButton(
             onPressed: bookMarked,
-            icon: Icon(context.watch<BookMarkScreenController>().bookmarkedNews
-                ? Icons.bookmark
-                : Icons.bookmark_outline,
-                color: Colors.black,))
+            icon: context.watch<BookMarkScreenController>().bookmarkIcon(title))
+               
       ],
     );
   }

@@ -94,6 +94,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => NewsDetailsScreen(
+                                  dateTime: homeScreenProvider
+                                      .news[index].publishedAt!
+                                      .toIso8601String(),
+                                  content: homeScreenProvider
+                                      .topNews[index].content!,
+                                  url: homeScreenProvider.topNews[index].url!,
                                   image: homeScreenProvider
                                           .topNews[index].urlToImage ??
                                       "",
@@ -204,6 +210,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => NewsDetailsScreen(
+                                        dateTime: homeScreenProvider
+                                            .news[index].publishedAt!
+                                            .toIso8601String(),
+                                        content: homeScreenProvider
+                                            .news[index].content!,
+                                        url:
+                                            homeScreenProvider.news[index].url!,
                                         description: homeScreenProvider
                                             .news[index].description!,
                                         image: homeScreenProvider

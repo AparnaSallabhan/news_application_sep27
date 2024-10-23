@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class TrendingCard extends StatelessWidget {
   const TrendingCard({
@@ -30,7 +31,7 @@ class TrendingCard extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: image,
                 placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                errorWidget: (context, url, error) =>Center(child: Lottie.asset("lib/assets/lottie_files/animation.json",height: 230)),
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),

@@ -2,24 +2,27 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:news_application_sep27/controller/book_mark_screen_controller.dart';
 import 'package:news_application_sep27/view/book_mark_screen/book_mark_screen.dart';
 import 'package:provider/provider.dart';
 
 class NewsDetailsScreen extends StatelessWidget {
-  const NewsDetailsScreen({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.source,
-    required this.description,
-    // required this.url
-  });
+  const NewsDetailsScreen(
+      {super.key,
+      required this.image,
+      required this.title,
+      required this.source,
+      required this.description,
+      required this.url,
+      required this.content, required this.dateTime});
   final String image;
   final String title;
   final String source;
   final String description;
-  // final String url;
+  final String url;
+  final String content;
+  final String dateTime;
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +41,12 @@ class NewsDetailsScreen extends StatelessWidget {
                     title: title,
                     source: source,
                     description: description,
-                    context: context
-                    );
+                    context: context);
               },
-              icon: Icon(
-                context.watch<BookMarkScreenController>().bookmarkedNews
-                    ? Icons.bookmark
-                    : Icons.bookmark_outline,
+              icon: 
+                context.watch<BookMarkScreenController>().bookmarkIcon(title),
                 color: Colors.black,
-              ))
+              )
         ],
       ),
       body: Padding(
@@ -61,8 +61,10 @@ class NewsDetailsScreen extends StatelessWidget {
                   imageUrl: image,
                   placeholder: (context, url) =>
                       Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) =>
-                      Center(child: Icon(Icons.error)),
+                  errorWidget: (context, url, error) => Center(
+                      child: Lottie.asset(
+                          "lib/assets/lottie_files/animation.json",
+                          height: 230)),
                   height: 250,
                   fit: BoxFit.cover,
                 ),
@@ -75,7 +77,7 @@ class NewsDetailsScreen extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
-                    color: Colors.grey),
+                    color: Colors.grey[700]),
               ),
               SizedBox(
                 height: 8,
@@ -94,19 +96,49 @@ class NewsDetailsScreen extends StatelessWidget {
                 description,
                 style: TextStyle(
                     fontSize: 16,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black.withOpacity(.7)),
               ),
               SizedBox(
                 height: 10,
               ),
-              // Text(
-              //   url,
-              //   style: TextStyle(
-              //       fontSize: 16,
-              //       fontWeight: FontWeight.w400,
-              //       color: Colors.black.withOpacity(.7)),
-              // ),
+              Text(
+                content,
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black.withOpacity(.7)),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Url :",
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromARGB(255, 2, 18, 119)),
+              ),
+              Text(
+                url,
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromARGB(255, 2, 18, 119)),
+              ),
+               SizedBox(
+                height: 10,
+              ),
+              Text(
+                dateTime,
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black),
+              ),
+              SizedBox(
+                height: 10,
+              ),
             ],
           ),
         ),

@@ -16,24 +16,27 @@ class BookMarkScreenController with ChangeNotifier {
       String? source,
       String? title,
       BuildContext? context}) async {
-    bool isBookMarked = false; //to check if the item is already bookmarked
+    bool isBookMarked = bookMarkList.any(
+      (element) => element.title == title,
+    ); //to check if the item is already bookmarked
     notifyListeners();
-    for (int i = 0; i < bookMarkList.length; i++) {
-      if (title == bookMarkList[i].title) {
-        isBookMarked = true;
-        ScaffoldMessenger.of(context!).showSnackBar(SnackBar(
-          content: Text("Alredy added to BookMark"),
-          duration: Duration(seconds: 5),
-          backgroundColor: Colors.grey[600],
-        ));
-        notifyListeners();
-      }
-    }
+    // for (int i = 0; i < bookMarkList.length; i++) {
+    //   if (title == bookMarkList[i].title) {
+    //     isBookMarked = true;
+    //     notifyListeners();
+    //     ScaffoldMessenger.of(context!).showSnackBar(SnackBar(
+    //       content: Text("Alredy added to BookMark"),
+    //       duration: Duration(seconds: 5),
+    //       backgroundColor: Colors.grey[600],
+    //     ));
+    //     notifyListeners();
+    //   }
+    // }
     if (isBookMarked) {
-      bookmarkedNews = false;
+      ///bookmarkedNews = false;
+      SnackBar(content: Text("Alredy added to Bookmark!"));
     } else if (!isBookMarked) {
       await bookMarkBox.add(BookMarkModel(description, image, source, title));
-      bookmarkedNews = true;
     }
     getBookMarkList();
     notifyListeners();
@@ -53,5 +56,21 @@ class BookMarkScreenController with ChangeNotifier {
   deleteAllBookMark() {
     bookMarkBox.deleteAll(keys);
     getBookMarkList();
+  }
+
+  Icon bookmarkIcon(String title) {
+    // for(int i=0;i<bookMarkList.length;i++){
+    //   if(title == bookMarkList[i].title){
+    //     Icon(Icons.bookmark);
+    //   }
+    //   else {
+    //     return Icon(Icons.bookmark_outline);
+    //   }
+    // }
+    // return Icon(Icons.bookmark_outline);
+    bool isBookMarked = bookMarkList.any(
+      (element) => element.title == title,
+    ); //to check if the item is already bookmarked
+    return isBookMarked?Icon(Icons.bookmark,color: Colors.black,) : Icon(Icons.bookmark_outline,color: Colors.black,);
   }
 }

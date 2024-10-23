@@ -24,19 +24,24 @@ class _ProfiileScreenState extends State<ProfiileScreen> {
         ),
         Text(
           "Profile",
-          style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ),
         SizedBox(
           height: 10,
         ),
-        CircleAvatar(radius: 80,),
-         SizedBox(
-          height: 10,
+        CircleAvatar(
+          radius: 80,
+          child: Icon(Icons.person,size: 90,),
+        ),
+        SizedBox(
+          height: 20,
         ),
         Text(
           "UserName",
-          style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ),
+        SizedBox(height: 10,),
+        
       ],
     );
   }
