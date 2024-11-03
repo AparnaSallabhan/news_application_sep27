@@ -28,6 +28,8 @@ class NewsDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         backgroundColor: Colors.white,
+        forceMaterialTransparency: true,
         actions: [
           IconButton(
               onPressed: () {

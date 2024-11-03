@@ -41,6 +41,7 @@ class TrendingScreen extends StatelessWidget {
             ),
             Expanded(
               child: ListView.separated(
+                padding: EdgeInsets.symmetric(vertical: 10),
                 itemBuilder: (context, index) => TrendingCard(
                     image:
                         trendingScreenProvider.topNews[index].urlToImage ?? "",

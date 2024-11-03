@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:news_application_sep27/model/news_data_model.dart';
 import 'package:news_application_sep27/model/source_model.dart';
-import 'package:news_application_sep27/model/source_model.dart';
 
 class SearchScreenController with ChangeNotifier {
   NewsDataModel? newsDataModel;
   bool isLoading = false;
+  bool searchTapped = false;
   List<Article> newsArticles = [];
-  onSearch(String keyword) async {
+  onSearch(String keyword,bool tapped) async {
     isLoading = true;
+    searchTapped = tapped;
     notifyListeners();
     try {
       final url = Uri.parse(
@@ -31,6 +32,8 @@ class SearchScreenController with ChangeNotifier {
 
   SourceModel? sourceModel;
   List<NewsSource>? sourceList = [];
+  List searchCatList = ["Authors", "Topics", "Sources"];
+  int selectedSearchcat = 0;
   getSources() async {
     isLoading = true;
     notifyListeners();

@@ -49,9 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
               indent: 10,
               endIndent: 10,
             ),
-            SizedBox(
-              height: 10,
-            ),
+            // SizedBox(
+            //   height: 10,
+            // ),
             Row(
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -89,9 +89,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 16,
-            ),
+            // SizedBox(
+            //   height: 10,
+            // ),
             //trending card
             homeScreenProvider.isLoading
                 ? CircularProgressIndicator()
