@@ -71,6 +71,14 @@ class BookMarkScreenController with ChangeNotifier {
     bool isBookMarked = bookMarkList.any(
       (element) => element.title == title,
     ); //to check if the item is already bookmarked
-    return isBookMarked?Icon(Icons.bookmark,color: Colors.black,) : Icon(Icons.bookmark_outline,color: Colors.black,);
+    return isBookMarked
+        ? Icon(
+            Icons.bookmark,
+            color: Colors.black,
+          )
+        : Icon(
+            Icons.bookmark_outline,
+            color: Colors.black,
+          );
   }
 }

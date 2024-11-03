@@ -3,6 +3,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_application_sep27/controller/search_screen_controller.dart';
+import 'package:news_application_sep27/view/widgets/application_logo.dart';
 import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -31,6 +32,14 @@ class _SearchScreenState extends State<SearchScreen> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          forceMaterialTransparency: true,
+          leading: ApplicationLogo(
+            smallSize: true,
+          ),
+          leadingWidth: 200,
+        ),
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Padding(
@@ -77,7 +86,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     tabs: [
                       Tab(
                         text: "Authors",
-                       
                       ),
                       Tab(
                         text: "Topics",

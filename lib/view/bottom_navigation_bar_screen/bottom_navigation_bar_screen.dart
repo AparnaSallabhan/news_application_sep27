@@ -27,14 +27,14 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        forceMaterialTransparency: true,
-        leading: ApplicationLogo(
-          smallSize: true,
-        ),
-        leadingWidth: 200,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   forceMaterialTransparency: true,
+      //   leading: ApplicationLogo(
+      //     smallSize: true,
+      //   ),
+      //   leadingWidth: 200,
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: selectedIndex,

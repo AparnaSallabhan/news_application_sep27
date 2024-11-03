@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_application_sep27/controller/book_mark_screen_controller.dart';
 import 'package:news_application_sep27/view/home_screen/widgets/news_card.dart';
+import 'package:news_application_sep27/view/widgets/application_logo.dart';
 import 'package:provider/provider.dart';
 
 class BookMarkScreen extends StatefulWidget {
@@ -24,7 +25,14 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
   Widget build(BuildContext context) {
     final bookMarkScreenProvider = context.watch<BookMarkScreenController>();
     return Scaffold(
-     // appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        forceMaterialTransparency: true,
+        leading: ApplicationLogo(
+          smallSize: true,
+        ),
+        leadingWidth: 200,
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Column(
@@ -51,6 +59,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
                 }, icon: Icon(Icons.delete))
               ],
             ),
+            SizedBox(height: 15,),
             Expanded(
               child: ListView.separated(
                   itemBuilder: (context, index) => NewsCard(

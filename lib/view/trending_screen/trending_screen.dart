@@ -15,9 +15,9 @@ class TrendingScreen extends StatelessWidget {
     final trendingScreenProvider = context.watch<HomeScreenController>();
     return Scaffold(
       appBar: AppBar(
-          //
-          // leadingWidth: 200,
-          ),
+        backgroundColor: Colors.white,
+        forceMaterialTransparency: true,
+      ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5),
@@ -36,7 +36,9 @@ class TrendingScreen extends StatelessWidget {
               "Trending News",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Expanded(
               child: ListView.separated(
                 itemBuilder: (context, index) => TrendingCard(
