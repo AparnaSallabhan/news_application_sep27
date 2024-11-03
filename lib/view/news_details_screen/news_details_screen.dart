@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:news_application_sep27/controller/book_mark_screen_controller.dart';
 import 'package:news_application_sep27/view/book_mark_screen/book_mark_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class NewsDetailsScreen extends StatelessWidget {
   const NewsDetailsScreen(
@@ -15,7 +16,8 @@ class NewsDetailsScreen extends StatelessWidget {
       required this.source,
       required this.description,
       required this.url,
-      required this.content, required this.dateTime});
+      required this.content,
+      required this.dateTime});
   final String image;
   final String title;
   final String source;
@@ -28,27 +30,36 @@ class NewsDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         forceMaterialTransparency: true,
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => BookMarkScreen(),
-                    ));
-                context.read<BookMarkScreenController>().addToBookMarkList(
-                    image: image,
-                    title: title,
-                    source: source,
-                    description: description,
-                    context: context);
+                final shareContent = """title:$title,
+            source: $source,
+            readmore :$url,
+            image:$image,
+            description :$description""";
+                Share.share(shareContent);
               },
-              icon: 
-                context.watch<BookMarkScreenController>().bookmarkIcon(title),
-                color: Colors.black,
-              )
+              icon: Icon(Icons.share)),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BookMarkScreen(),
+                  ));
+              context.read<BookMarkScreenController>().addToBookMarkList(
+                  image: image,
+                  title: title,
+                  source: source,
+                  description: description,
+                  context: context);
+            },
+            icon: context.watch<BookMarkScreenController>().bookmarkIcon(title),
+            color: Colors.black,
+          )
         ],
       ),
       body: Padding(
@@ -128,7 +139,7 @@ class NewsDetailsScreen extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     color: Color.fromARGB(255, 2, 18, 119)),
               ),
-               SizedBox(
+              SizedBox(
                 height: 10,
               ),
               Text(

@@ -6,11 +6,9 @@ import 'package:news_application_sep27/model/source_model.dart';
 class SearchScreenController with ChangeNotifier {
   NewsDataModel? newsDataModel;
   bool isLoading = false;
-  bool searchTapped = false;
   List<Article> newsArticles = [];
-  onSearch(String keyword,bool tapped) async {
+  onSearch(String keyword) async {
     isLoading = true;
-    searchTapped = tapped;
     notifyListeners();
     try {
       final url = Uri.parse(
